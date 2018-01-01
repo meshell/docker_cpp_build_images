@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/meshell/docker_cpp_build_images.svg?branch=master)](https://travis-ci.org/meshell/docker_cpp_build_images)
+
 # docker C++ build images
 
 Dockerfiles to create container images for building C++ projects with

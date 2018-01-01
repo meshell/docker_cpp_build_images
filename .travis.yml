@@ -25,6 +25,6 @@ env:
 
 script:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - export TAG=`if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master" ]]; then echo "latest"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
-  - export BUILD_NUMBER=`if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master" ]]; then echo "latest"; else echo ""; fi`
+  - export TAG=`if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master" ]]; then echo "latest"; else echo ${TRAVIS_PULL_REQUEST_BRANCH}; fi`
+  - export BUILD_NUMBER=`if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master" ]]; then echo "$TRAVIS_BUILD_NUMBER; else echo ""; fi`
   - python rebuild_and_upload.py --upload --tag ${TAG} --build_number ${BUILD_NUMBER} --${COMPILER_NAME} ${COMPILER_VERSION}
