@@ -110,10 +110,11 @@ class Builder(object):
             tagged_image_name = "{}:{}".format(image_name,tag) if len(tag) > 0 else image_name
             build_image_name = "{}:{}".format(image_name,build_number) if len(build_number) > 0 else tagged_image_name
             os.system("cd {} && ./build.sh {}".format(folder_name, tagged_image_name))
-            if build_image_name != tagged_image_name:
-                os.system("docker tag {} {}".format(tagged_image_name, build_image_name))
             if upload_after_build:
-                os.system("sudo docker push {}".format(build_image_name))
+                if build_image_name != tagged_image_name:
+                    os.system("docker tag {} {}".format(tagged_image_name, build_image_name))
+                    os.system("sudo docker push {}".format(build_image_name))
+                os.system("sudo docker push {}".format(tagged_image_name))
 
     @property
     def name(self):

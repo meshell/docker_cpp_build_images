@@ -1,6 +1,6 @@
 if [ -z "$1" ]
   then
-    IMAGE_NAME=meshell/clang340
+    IMAGE_NAME=meshell/clang40
   else
     IMAGE_NAME=$1
 fi
